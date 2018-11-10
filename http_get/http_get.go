@@ -3,11 +3,19 @@
 package main
 
 import (
-        "fmt"
+        "log"
+        "flag"
         "net/http"
-       )
+)
 
 func main() {
-    resp, _ := http.Get("http://10.0.11.138")
-    fmt.Println(resp)
+    flag.Parse()
+    url := flag.Arg(0)
+    url = "http://" + url
+    resp, err := http.Get(url)
+    log.Println("HTTP GET for " + url)
+    if err != nil {
+        panic(err)
+    }
+    log.Println(resp)
 }
