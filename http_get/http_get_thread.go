@@ -27,12 +27,10 @@ func main() {
     flag.Parse()
     url := flag.Arg(0)
     url = "http://" + url
-
     log.SetFlags(log.Lmicroseconds)
-    for i := 0; i < 10; i++ {
-        log.Println("start sub()")
+
+    for i := 0; i < 300; i++ {
         go sub(url)
-        log.Println("hoge")
-        time.Sleep(2 * time.Second)
+        time.Sleep(100 * time.Millisecond)
     }
 }
